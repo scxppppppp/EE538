@@ -1,0 +1,19 @@
+std::vector<int*> GetGrades(int n) {
+  std::vector<int*> grades;
+  for (int i = 0; i < n; i++) {
+    int grade;
+    std::cin >> grade;
+    grades.push_back(&grade);
+  }
+  return grades;
+}
+int main() {
+  int number_of_students = 2;
+  auto grades = GetGrades(number_of_students);
+  float sum = 0;
+  for (int* e : grades) {
+    sum += *e;
+  }
+  std::cout << "average: " << sum / number_of_students << std::endl;
+  return 0;
+}

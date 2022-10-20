@@ -33,3 +33,74 @@ class Student {
   std::string name;
   int grade;
 };
+
+
+
+#include "q.h"
+
+#include <climits>
+#include <cmath>
+#include <iostream>
+#include <list>
+#include <string>
+#include <vector>
+
+// Parameterized constructor
+  Student::Student(std::string name, int grade){
+    this -> name = name;
+    this -> grade = grade;
+  }
+
+  // Non-parameterized constructor. Sets the default value for name to "NO_NAME"
+  // and grade to 0.
+  Student::Student(){
+    name = "NO_NAME";
+    grade = 0;
+  }
+  
+  // Copy constructor.
+  Student::Student(const Student& rhs){
+    this -> name = rhs.name;
+    this -> grade = rhs.grade;
+  }
+
+  //------------------------------------------------------
+  // The following operators are overloaded. They only compare the grade part of
+  // the class with other objects.
+  // Using const at the end of the following function declarations
+  // means these functions don't modify any member variables.
+  //------------------------------------------------------
+
+  // Returns true if grade is less than the grade of other Student objects and
+  // false otherwise.
+  bool Student::operator<(const Student& rhs) const{
+    if(this -> grade < rhs.grade) return true;
+    else return false;
+  }
+
+  // Returns true if grade is greater than the grade of other Student objects
+  // and false otherwise.
+  bool Student::operator>(const Student& rhs) const{
+    if(this -> grade > rhs.grade) return true;
+    else return false;
+  }
+
+  // Returns true if grade is equal to the grade of other Student objects and
+  // false otherwise.
+  bool Student::operator==(const Student& rhs) const{
+    if(this -> grade == rhs.grade) return true;
+    else return false;
+  }
+
+int main(){
+  int grade;
+  std::string name;
+  Student s;
+  Student s("wufei", 100);
+  std::cout<<"enter name";
+  std::cout << name;
+  std::cout << "enter grade";
+  std::cout << grade;
+
+}
+

@@ -1,0 +1,30 @@
+std::map<std::string, int> WordHistogram(std::string &text);
+1.Empty case 
+Input: ""
+
+Output (map of std::string to int): 
+{ }
+2.Corner cases
+Input: ",. ,. , ., ., . ,. ,. "
+
+Output (map of std::string to int): 
+{ }
+3.Easy cases
+Input: "this"
+
+Output (map of std::string to int): 
+{ 
+  {"this", 1}
+}
+4.Harder cases
+Input: ",..this is a ,,,..,.test, and . this .,. ,. ,is another one.  ,"
+
+Output (map of std::string to int): 
+{ {"a", 1},
+  {"and", 1},
+  {"another", 1},
+  {"is", 2},
+  {"one", 1},
+  {"test", 1},
+  {"this", 2}
+}

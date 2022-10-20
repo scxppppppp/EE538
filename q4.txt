@@ -28,3 +28,58 @@ Output (map of std::string to int):
   {"test", 1},
   {"this", 2}
 }
+
+
+
+
+
+#include "q.h"
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+std::map<std::string, int> WordHistogram(std::string &text){
+  std::map<std::string, int> output;
+  std::string t;//a temporary string to store the word
+  std::vector<std::string> vec_text;// the vector to store the extracted words
+  //take the words out of the text
+  for(auto c:text){
+    if(c == ' ' || c == ',' || c == '.'){
+      if(t.length() != 0){
+        vec_text.push_back(t);
+        t.clear();
+      }
+    }
+    else
+      t += c;
+  }
+  if(t.length() != 0) vec_text.push_back(t);// the last word should also be pushback to vec_text
+  //now we get a vector vec_text, which include all the words in the text;
+  //put the element from the vector to the map, if find reptition, ++value
+  for(int i = 0; i < vec_text.size(); i++){
+    std::map<std::string, int>::iterator iter;
+    iter = output.find(vec_text[i]);
+    if(iter != output.end()){
+      output[vec_text[i]]++;
+    }
+    else output[vec_text[i]] = 1;
+  }
+  return output;
+}
+
+int main(){
+  int ex = 0;
+  std::string in;
+  //in = "  ,.,.this .,,.,.  is a test ,.,. is a test suck,.,.,.";
+  in = ",.,. . ,. ,., ";
+  std::map<std::string, int> o1 = WordHistogram(in);
+  /*for(std::map<std::string, int>::iterator it = o1.begin(); it != o1.end(); ++it){
+    std::cout<<*it<<std::endl;
+  }*/
+  for(auto pair:o1){
+    std::cout<<pair.first<< ":"<< pair.second<<std::endl;
+  }
+  std::cin>>ex;
+  return 0;
+}

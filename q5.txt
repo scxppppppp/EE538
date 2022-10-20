@@ -7,3 +7,73 @@ struct Result {
 };
 
 Result StringProcessor(std::string &text, Command command);
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+
+enum class Command { kNumberOfVowels, kCheckSum };
+
+struct Result {
+  char checksum;
+  unsigned int number_of_vowels;
+  Result() : checksum('0'), number_of_vowels(0) {}
+};
+
+//define the function num to do iteration to get the number of the vowels
+int num(std::string &text, int &n){
+  if(text.length() != 0){
+    char tmp = text[0];
+    text.erase(0,1);
+    tmp = std::tolower(tmp);
+    if(tmp == 'a' || tmp == 'e' || tmp == 'i' || tmp == 'o' || tmp == 'u') n++;
+    return num(text, n);
+  }
+  return n;
+}
+//define the function Checksum to do the checksum to all of the characters
+char Checksum(std::string &text, char &c){
+  if(text.length() != 0){
+    c = c ^ text[0];
+    text.erase(0,1);
+    return Checksum(text,c);
+  }
+  return c;
+}
+//implement the function StringProcessor
+Result StringProcessor(std::string &text, Command command){
+  //instantiate the rst from the struct Result
+  Result rst;
+  //define the default value for parameters
+  int number = 0;
+  char cs = '0';
+  //check the command
+  if(command == Command::kNumberOfVowels){  
+    rst.number_of_vowels = num(text, number); // get the number from the function num
+  }
+  if(command == Command::kCheckSum){
+      rst.checksum = Checksum(text, cs) ^ '0'; // get the checksum, because the defualt is '0'
+                                               // then need to be xor with '0'   
+  }
+  else return rst;
+}
+
+
+int main(){
+  Result s;
+  std::string str = "aaeeiiooUU";
+  //Command cmd = Command::kCheckSum;
+  Command cmd = Command::kNumberOfVowels;
+  s = StringProcessor(str, cmd);
+  std::cout<<s.number_of_vowels<<std::endl;
+  std::cout<<s.checksum<<std::endl;
+  int ex = 0;
+  std::cin >> ex;
+
+}

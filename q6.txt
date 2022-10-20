@@ -1,0 +1,35 @@
+class Student {
+ public:
+  // Parameterized constructor
+  Student(std::string name, int grade);
+
+  // Non-parameterized constructor. Sets the default value for name to "NO_NAME"
+  // and grade to 0.
+  Student();
+  
+  // Copy constructor.
+  Student(const Student& rhs);
+
+  //------------------------------------------------------
+  // The following operators are overloaded. They only compare the grade part of
+  // the class with other objects.
+  // Using const at the end of the following function declarations
+  // means these functions don't modify any member variables.
+  //------------------------------------------------------
+
+  // Returns true if grade is less than the grade of other Student objects and
+  // false otherwise.
+  bool operator<(const Student& rhs) const;
+
+  // Returns true if grade is greater than the grade of other Student objects
+  // and false otherwise.
+  bool operator>(const Student& rhs) const;
+
+  // Returns true if grade is equal to the grade of other Student objects and
+  // false otherwise.
+  bool operator==(const Student& rhs) const ;
+
+  
+  std::string name;
+  int grade;
+};

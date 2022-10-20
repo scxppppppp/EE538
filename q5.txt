@@ -1,0 +1,9 @@
+enum class Command { kNumberOfVowels, kCheckSum };
+
+struct Result {
+  char checksum;
+  unsigned int number_of_vowels;
+  Result() : checksum('0'), number_of_vowels(0) {}
+};
+
+Result StringProcessor(std::string &text, Command command);

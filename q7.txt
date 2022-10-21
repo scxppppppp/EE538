@@ -13,3 +13,11 @@ std::map<Statistics, int> FindStatistics(BinaryTreeNode *root) {
 
 void FindStatistics_Helper(BinaryTreeNode *root, int current_level,
                            std::map<Statistics, int> &statistics){
+                           
+std::map<Statistics, int> expected = {
+        {Statistics::kHeight, 3},
+        {Statistics::kNumberOfLeaves, 2},
+        {Statistics::kMin, 1},
+        {Statistics::kMax, 5},
+        {Statistics::kNumberOfSingleChildNodes, 1},
+        {Statistics::kNumberOfNodes, 4}}                        

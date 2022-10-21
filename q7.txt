@@ -24,17 +24,128 @@ std::map<Statistics, int> expected = {
 
 
 
+
+#include "q.h"
+
+#include <iostream>
+#include <map>
+#include <limits.h>
+
+struct BinaryTreeNode {
+  int val;
+  BinaryTreeNode *left;
+  BinaryTreeNode *right;
+  BinaryTreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  BinaryTreeNode(int x, BinaryTreeNode *left_ptr, BinaryTreeNode *right_ptr)
+      : val(x), left(left_ptr), right(right_ptr) {}
+};
+
+bool bst(BinaryTreeNode* root, int max, int min){
+  if (root == nullptr) return true;
+  if (root->val <= min) return false;
+  if (root->val >= max) return false;
+  return bst(root->right, max, root->val) && bst(root->left, root->val, min);
+}
+
+bool IsBST(BinaryTreeNode* root){
+  return bst(root, INT_MAX, INT_MIN);
+}
+
+enum Statistics {kHeight, kNumberOfLeaves, kMin, kMax, kNumberOfSingleChildNodes, kNumberOfNodes};
+
+int Height(BinaryTreeNode *root){
+  if(root == nullptr) return 0;
+  else{
+    int left_height = Height(root->left);
+    int right_height = Height(root->right);
+    if(left_height > right_height) return left_height + 1;
+    else return right_height + 1;
+  }
+}
+
+int LeavesNumber(BinaryTreeNode *root){
+  if(root == nullptr) return 0;
+  if((root->left == nullptr) && (root->right == nullptr))return 1;
+  else return LeavesNumber(root->left) + LeavesNumber(root->right);
+}
+
+int Max(BinaryTreeNode *root){
+  if(root == nullptr) return INT_MIN;
+  int nodevalue = root->val;
+  if(Max(root->left) > nodevalue) nodevalue = Max(root->left);
+  if(Max(root->right) > nodevalue) nodevalue =  Max(root->right);
+  return nodevalue;
+}
+
+int Min(BinaryTreeNode *root){
+  if(root == nullptr) return INT_MAX;
+  int nodevalue = root->val;
+  if(Min(root->left) < nodevalue) nodevalue = Min(root->left);
+  if(Min(root->right) < nodevalue) nodevalue =  Min(root->right);
+  return nodevalue;
+}
+int CountSingleChildNodes(BinaryTreeNode *root){
+  if(root == nullptr) return 0;
+  if((root->left == nullptr && root->right != nullptr)
+      || (root->left != nullptr && root->right == nullptr)) return 1;
+  return CountSingleChildNodes(root->left) + CountSingleChildNodes(root->right);
+}
+
+int CountNodes(BinaryTreeNode *root){
+  if(root == nullptr) return 0;
+  return 1 + CountNodes(root->left) + CountNodes(root->right);
+}
+
+std::map<Statistics, int> FindStatistics(BinaryTreeNode *root) {
+  std::map<Statistics, int> statistics = {
+        {Statistics::kHeight, 0},
+        {Statistics::kNumberOfLeaves, 0},
+        {Statistics::kMin, INT_MAX},
+        {Statistics::kMax, INT_MIN},
+        {Statistics::kNumberOfSingleChildNodes, 0},
+        {Statistics::kNumberOfNodes, 0}};
+
+  statistics[Statistics::kHeight] = Height(root);
+  statistics[Statistics::kNumberOfLeaves] = LeavesNumber(root);
+  statistics[Statistics::kMin] = Min(root);
+  statistics[Statistics::kMax] = Max(root);
+  statistics[Statistics::kNumberOfSingleChildNodes] = CountSingleChildNodes(root);
+  statistics[Statistics::kNumberOfNodes] = CountNodes(root);
+  return statistics;
+}
+
 int main()
 {
-    node* root = newNode(1);
-    root->left = newNode(2);
-    root->right = newNode(3);
-    root->left->left = newNode(4);
-    root->left->right = newNode(5);
-    root->right->left = newNode(9);
-    root->right->right = newNode(8);
-    root->left->left->left = newNode(6);
-    root->left->left->right = newNode(7);
-    cout << TotalNodes(root);
-    return 0;
+    int ex = 0;
+    BinaryTreeNode* root = new BinaryTreeNode(1);
+    root->left = new BinaryTreeNode(2);
+    root->right = new BinaryTreeNode(3);
+    root->left->left = new BinaryTreeNode(4);
+    root->left->right = new BinaryTreeNode(5);
+    root->right->left = new BinaryTreeNode(9);
+    root->right->right = new BinaryTreeNode(8);
+    root->left->left->left = new BinaryTreeNode(6);
+    root->left->left->right = new BinaryTreeNode(7);
+    
+    std::map<Statistics, int> o1 = FindStatistics(root);
+  /*for(std::map<std::string, int>::iterator it = o1.begin(); it != o1.end(); ++it){
+    std::cout<<*it<<std::endl;
+  }*/
+  for(auto pair:o1){
+    std::cout<<pair.first<< ":"<< pair.second<<std::endl;
+  }
+  bool x = IsBST(root);
+  std::cout<<"isbst:"<< x <<std::endl;
+  std::cin>>ex;
+  delete(root->left->left->right);
+  delete(root->left->left->left);
+  delete(root->right->right);
+  delete(root->right->left);
+  delete(root->left->right);
+  delete(root->left->left);
+  delete(root->right);
+  delete(root->left);
+  delete(root);
+ 
+  return 0;
 }

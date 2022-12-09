@@ -1,7 +1,16 @@
 **************************************************************
-* 3. Find all location categories                             
+* 4. Get all locations in a category                           
 **************************************************************
 
 *************************Results******************************
-"artwork", "attraction", "bakery", "bank", "bar", "beauty", "beverages", "bicycle", "bicycle_rental", "bus_station", "cafe", "car", "car_repair", "car_wash", "charging_station", "childcare", "clinic", "clothes", "confectionery", "convenience", "copyshop", "dentist", "department_store", "driving_school", "fabric", "fast_food", "food_court", "fountain", "fuel", "gallery", "hairdresser", "hospital", "hotel", "library", "marketplace", "mobile_phone", "museum", "music", "optician", "parcel_locker", "parking", "parking_entrance", "pharmacy", "place_of_worship", "police", "post_box", "post_office", "restaurant", "school", "shoe_repair", "shoes", "skate", "social_facility", "supermarket", "theatre", "tobacco", "yes", "yoga", TrojanMap Menu
+Please input the category:artwork
+"2305853438", "4399693645", "6813379578", "4536993737", "5237417648", TrojanMap Menu
+**************************************************************
+**************************************************************
+* 4. Get all locations in a category                           
+**************************************************************
+
+*************************Results******************************
+Please input the category:bar
+"6045038065", "5567714035", "6045035789", TrojanMap Menu
 **************************************************************

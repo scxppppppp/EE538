@@ -1,12 +1,7 @@
 **************************************************************
-* 2. Find the location                                        
+* 3. Find all location categories                             
 **************************************************************
 
-Please input a location:tarhet
 *************************Results******************************
-No matched locations.
-Did you mean Target instead of tarhet? [y/n]y
-Latitude: 34.0257 Longitude: -118.284
+"artwork", "attraction", "bakery", "bank", "bar", "beauty", "beverages", "bicycle", "bicycle_rental", "bus_station", "cafe", "car", "car_repair", "car_wash", "charging_station", "childcare", "clinic", "clothes", "confectionery", "convenience", "copyshop", "dentist", "department_store", "driving_school", "fabric", "fast_food", "food_court", "fountain", "fuel", "gallery", "hairdresser", "hospital", "hotel", "library", "marketplace", "mobile_phone", "museum", "music", "optician", "parcel_locker", "parking", "parking_entrance", "pharmacy", "place_of_worship", "police", "post_box", "post_office", "restaurant", "school", "shoe_repair", "shoes", "skate", "social_facility", "supermarket", "theatre", "tobacco", "yes", "yoga", TrojanMap Menu
 **************************************************************
-Time taken by function: 23 ms
-
